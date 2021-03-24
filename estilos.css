@@ -1,0 +1,17 @@
+/* Con el "*" se aplican las reglas a todos los archivo html vinculados */
+/* Coloqué fuente Arial con color blanco a todos los textos */
+* {
+    font-family: Arial, Helvetica, sans-serif;
+    color:white;
+}
+
+/* Le puse class index al <body> del index.html para aplicar el fondo */
+.index {
+    background: url(images/fondoIndex.jpg);
+
+}
+
+/* Le puse clase indexGato al <body> del gato.html para aplicar el fondo */
+.indexGato {
+    background: url(images/fondoGato.jpg);
+}
