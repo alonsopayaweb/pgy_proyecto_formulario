@@ -3,6 +3,7 @@
 * {
     font-family: Arial, Helvetica, sans-serif;
     color:white;
+    font-size: 24px;
 }
 
 /* Le puse class index al <body> del index.html para aplicar el fondo */
@@ -14,4 +15,8 @@
 /* Le puse clase indexGato al <body> del gato.html para aplicar el fondo */
 .indexGato {
     background: url(images/fondoGato.jpg);
+}
+
+.indexPerro {
+    background: url(images/fondoPerro.jpg);
 }
