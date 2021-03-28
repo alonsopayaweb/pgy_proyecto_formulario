@@ -6,18 +6,22 @@
 
 .index {
     background: url(images/fondoIndex.jpg);
-    background-attachment: fixed; /*Fondo fijo durante el scroll */
-
+    padding-top: 20px; /* Agregado relleno arriba al index principal */
 }
 
 .indexGato {
     background: url(images/fondoGato.jpg);
-    background-attachment: fixed; /*Fondo fijo durante el scroll */
 }
 
 .indexPerro {
     background: url(images/fondoPerro.jpg);
+    
+}
+
+.index, .indexPerro, .indexGato {
     background-attachment: fixed; /*Fondo fijo durante el scroll */
+    padding-left: 100px; /* Relleno izquierdo */
+    padding-right: 100px; /* Relleno derecho */
 }
 
 h1 {
@@ -50,3 +54,21 @@ li {
     text-align: right; /* Agregué un div a cada enlace <a> de navegación y los ubiqué a la derecha */
 }
 
+.articuloIndex, .articuloGato, .articuloPerro {
+    margin: 35px; /* A cada articulo de animales, le puse este margen */
+    display: flex; /* Le di flexibilidad a la imagen y al articulo para poder alinearlos verticalmente */
+    align-items: center; /* Alineación vertical lograda */
+}
+
+.urlTexto {
+    margin-left: 50px; /* Separación entre la imagen y el link */
+}
+
+.descripcionGato, .descripcionPerro {
+    padding-top: 30px; /* Agregado relleno arriba a las fichas descriptivas */
+    display: flex; /* El display de flex coloca la lista a continuacion de la imagen para cumplir con el diseño del mockup */
+}
+
+.listaDescripcion {
+    list-style: none; /* Eliminamos viñetas por defecto de la lista de la descripcion */
+}
