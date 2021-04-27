@@ -2,17 +2,14 @@
 <html lang="es">
 
 <head>
+    <title>ONG Ayuda a un Peludo</title>
     <meta charset="UTF-8">
-    <title>Gatos en Adopción</title>
-    <link rel="stylesheet" href="../estilos.css">
+    <link rel="stylesheet" href="estilos.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
         integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css" />
-    <link rel="stylesheet" href="../cards-gallery.css">
 </head>
 
-<body class="indexGato">
+<body class="index">
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
             <h1 class="display-4">ONG - AYUDA A UN PELUDO</h1>
@@ -44,52 +41,48 @@
                     <a class="nav-link" href="perro.html">Perros</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="contacto.html">Contactos</a>
+                    <a class="nav-link" href="#">Contactos</a>
                 </li>
             </ul>
         </div>
     </nav>
-    <h1>Perros En Adopción</h1>
-    <p>Según expertos, los perros entienden las emociones humanas. Salva una vida y adopta un perro rescatado en
-        nuestra fundación.
-        ¡Tu mejor amigo está aquí!.
-    </p>
-    <section class="gallery-block cards-gallery">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-lg-4">
-                    <div class="card border-0 transform-on-hover">
-                        <a class="lightbox" href="perros/perro1.html">
-                            <img src="../images/perro1.jpg" alt="Card Image" height="300px" class="card-img-top">
-                        </a>
-                        <div class="card-body">
-                            <h6><a href="#">Ulv</a></h6>
-                        </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm col-md-6">
+                <form action="http://www.colex.cl/duoc/cargaData.php" method="POST">
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Nombre</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Inserte su nombre">
                     </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="card border-0 transform-on-hover">
-                        <a class="lightbox" href="perros/perro2.html">
-                            <img src="../images/perro2.jpg" alt="Card Image" height="300px" class="card-img-top">
-                        </a>
-                        <div class="card-body">
-                            <h6><a href="#">Emerald</a></h6>
-                        </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Correo Electrónico</label>
+                        <input type="email" class="form-control" id="correo" name="correo" placeholder="Inserte su correo">
                     </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="card border-0 transform-on-hover">
-                        <a class="lightbox" href="perros/perro3.html">
-                            <img src="../images/perro3.jpg" alt="Card Image" height="300px" class="card-img-top">
-                        </a>
-                        <div class="card-body">
-                            <h6><a href="#">Konig</a></h6>
-                        </div>
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Documento</label>
+                        <input type="text" class="form-control" id="documento" name="documento" placeholder="Inserte su RUT">
                     </div>
-                </div>
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Teléfono</label>
+                        <input type="tel" class="form-control" id="telefono" name="telefono" placeholder="Inserte su Teléfono">
+                    </div>
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Ciudad</label>
+                        <input type="text" class="form-control" id="ciudad" name="ciudad" placeholder="Inserte su Ciudad">
+                    </div>
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Comentario</label>
+                        <input type="text" class="form-control" id="comentario" name="comentario" placeholder="Inserte su comentario">
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" id="url" name="url" value="https://www.google.cl">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                    <button type="reset" class="btn btn-primary">Limpiar</button>
+                </form>
             </div>
         </div>
-    </section>
+    </div>
     <footer class="container-fluid">
         <hr>
         <p>Redes Sociales:</p>
@@ -106,10 +99,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
         crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
-    <script>
-        baguetteBox.run('.cards-gallery', { animation: 'slideIn' });
-    </script>
 </body>
 
 </html>
