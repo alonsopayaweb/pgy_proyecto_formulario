@@ -1,0 +1,19 @@
+.jumbotron {
+    background-color: #C2F3F5 !important;
+    color: #595959;
+    text-align: center;
+}
+
+.jumbotron h1 {
+    font-weight: bold;
+}
+
+body {
+    background-color: #C2F3F5 !important;
+    margin: 0;
+    margin-bottom: 75px;
+}
+
+footer a {
+    color: #272727;
+}
