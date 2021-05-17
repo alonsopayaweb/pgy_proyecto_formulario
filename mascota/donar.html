@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Donar</title>
-    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="../estilos.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
         integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 </head>
@@ -61,8 +61,8 @@
                     <li class="list-group-item">Juanito Melo Machuca</li>
                 </ul>
                 <p>¿Quieres donar a la caja vecina más cercana?: Consulta el clima</p>
-                <button class="btn btn-primary">Consultar Clima</button>
-                <p>(Aqui va el clima y todo eso)</p>
+                <button class="btn btn-primary" id="botonClima">Consultar Clima</button>
+                <p class="d-none" id="localizacion"></p> <!-- AQUÍ ESTÁ EL PARRAFO QUE MUESTRA EL CLIMA -->
             </div>
         </div>
     </div>
@@ -76,12 +76,51 @@
         <a href="https://www.instagram.com/AyudaAUnPeludo_">Instagram</a>
         <p>2021 © Todos los Derechos Reservados</p>
     </footer>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
         crossorigin="anonymous"></script>
+    <script>
+
+
+
+        //Obtenemos la localizacion
+        //Los datos de navigator son propios del Objeto window de Javascript
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(mostrarPosicion);
+            } else {
+                jQuery('#localizacion').html('La localización no se pudo conseguir.');
+                $('#botonClima').addClass('d-none');
+            }
+        }
+
+        function mostrarPosicion(position) {
+            var latitud = position.coords.latitude;
+            var longitud = position.coords.longitude;
+            var urlAPI = 'http://api.weatherapi.com/v1/current.json?key=1f607112dbd0455ebd915833211705&q=';
+            var urlFinal = urlAPI + latitud + ',' + longitud;
+            jQuery.getJSON(urlFinal,
+                function (data) {
+                    $('#localizacion').removeClass('d-none');
+                    jQuery('#localizacion').html(data.location.name + ', ' + data.location.country + ': ' + data.current.temp_c + ' °C');
+                    $('#botonClima').addClass('d-none');
+                });
+
+        }
+
+        //Funcion en JS para cuando termine de cargar la pagina
+        jQuery(document).ready(function () {
+
+            //Asignamos funcion para obtener la localizacion una vez hecho el clic
+            jQuery('#botonClima').click(function () {
+                getLocation();
+            });
+        });
+
+
+    </script>
 </body>
 
 </html>
