@@ -4,16 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contacto</title>
+    <title>🐾ONG Ayuda a un Peludo🐱</title>
     <link rel="stylesheet" href="../estilos.css">
+    <link rel="stylesheet" href="../fuzzycomplete.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
         integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 </head>
 
-<body class="index">
+<body>
     <div class="jumbotron jumbotron-fluid m-0 py-2">
         <div class="container">
-            <h1 class="display-4">ONG - AYUDA A UN PELUDO</h1>
+            <h1 class="display-4">🐾AYUDA A UN PELUDO🐱</h1>
             <p class="lead">¿Buscas un nuevo mejor amigo? Somos una organización sin fines de lucro protectora de
                 animales, que surge de
                 la
@@ -31,10 +32,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="../index.html">Inicio </a>
+                        <a class="nav-link" href="../index.html">🏠 Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="nosotros.html">Nosostros</a>
+                        <a class="nav-link" href="nosotros.html">Nosotros</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="gato.html">Gatos</a>
@@ -58,49 +59,50 @@
 
                 <form action="http://www.colex.cl/duoc/cargaData.php" method="POST" id="formulario">
 
-                <h1>Contacto</h1>
+                    <h1>Contacto</h1>
 
                     <div class="form-group">
-                        <label for="formGroupExampleInput">Nombre</label>
+                        <label for="nombre">Nombre</label>
                         <input type="text" class="form-control" id="nombre" name="nombre"
                             placeholder="Inserte su nombre">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Correo Electrónico</label>
+                        <label for="correo">Correo Electrónico</label>
                         <input type="email" class="form-control" id="correo" name="correo"
                             placeholder="Inserte su correo">
                     </div>
                     <div class="form-group">
-                        <label for="formGroupExampleInput">Documento</label>
+                        <label for="documento">Documento</label>
                         <input type="text" class="form-control" id="documento" name="documento"
                             placeholder="Inserte su RUT">
                     </div>
                     <div class="form-group">
-                        <label for="formGroupExampleInput">Pasaporte</label>
+                        <label for="pasaporte">Pasaporte</label>
                         <input type="text" class="form-control" id="pasaporte" name="documento"
                             placeholder="Inserte su pasaporte">
                     </div>
                     <div class="form-group">
-                        <label for="formGroupExampleInput">Teléfono</label>
+                        <label for="telefono">Teléfono</label>
                         <input type="tel" class="form-control" id="telefono" name="telefono"
                             placeholder="Inserte su Teléfono">
                     </div>
                     <div class="form-group">
-                        <label for="formGroupExampleInput">Ciudad</label>
+                        <label for="ciudad">Ciudad</label>
                         <input type="text" class="form-control" id="ciudad" name="ciudad"
                             placeholder="Inserte su Ciudad">
                     </div>
                     <div class="form-group">
-                        <label for="formGroupExampleInput">Comentario</label>
+                        <label for="comentario">Comentario</label>
                         <input type="text" class="form-control" id="comentario" name="comentario"
                             placeholder="Inserte su comentario">
                     </div>
                     <div class="form-group">
-                        <input type="hidden" id="url" name="url" value="https://www.google.cl">
+                        <input type="hidden" id="url" name="url"
+                            value="https://alonsopayaweb.github.io/pgy_proyecto_formulario/">
                     </div>
                     <input type="submit" class="btn btn-danger" id="enviar" value="Enviar">
                     <input type="reset" class="btn btn-primary" id="limpiar" value="Limpiar">
-                    <div id="error" class="alert alert-danger" role="alert"></div>
+                    <div id="error" class="alert alert-danger mt-3" role="alert"></div>
                 </form>
             </div>
         </div>
@@ -117,9 +119,9 @@
             <p>2021 © Todos los Derechos Reservados</p>
         </div>
     </footer>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-2.2.3.min.js" type="text/javascript"></script>
+    <script src="../fuse.min.js" type="text/javascript"></script>
+    <script src="../fuzzycomplete.min.js" type="text/javascript"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
         integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
         crossorigin="anonymous"></script>
@@ -128,14 +130,182 @@
         crossorigin="anonymous"></script>
     <script>
         $(document).ready(function () {
+
+            //ARRAY PARA SUGERIR CIUDADES
+            var sugerenciaCiudad = [
+                { "ciudadname": "Arica" },
+                { "ciudadname": "Putre" },
+                { "ciudadname": "Antofagasta" },
+                { "ciudadname": "Mejillones" },
+                { "ciudadname": "Taltal" },
+                { "ciudadname": "Calama" },
+                { "ciudadname": "San Pedro de Atacama" },
+                { "ciudadname": "Tocopilla" },
+                { "ciudadname": "Copiapó" },
+                { "ciudadname": "Caldera" },
+                { "ciudadname": "Tierra Amarilla" },
+                { "ciudadname": "Chañaral" },
+                { "ciudadname": "Diego de Almagro" },
+                { "ciudadname": "El Salvador" },
+                { "ciudadname": "Vallenar" },
+                { "ciudadname": "Huasco" },
+                { "ciudadname": "Copiapó" },
+                { "ciudadname": "La Serena" },
+                { "ciudadname": "Coquimbo" },
+                { "ciudadname": "Tongoy" },
+                { "ciudadname": "Andacollo" },
+                { "ciudadname": "Vicuña" },
+                { "ciudadname": "Illapel" },
+                { "ciudadname": "Los Vilos" },
+                { "ciudadname": "Canela" },
+                { "ciudadname": "Salamanca" },
+                { "ciudadname": "Ovalle" },
+                { "ciudadname": "Combarbalá" },
+                { "ciudadname": "Monte Patria" },
+                { "ciudadname": "Valparaíso" },
+                { "ciudadname": "Viña del Mar" },
+                { "ciudadname": "Concón" },
+                { "ciudadname": "Quilpué" },
+                { "ciudadname": "Villa Alemana" },
+                { "ciudadname": "Casablanca" },
+                { "ciudadname": "Puchuncaví" },
+                { "ciudadname": "Las Ventanas" },
+                { "ciudadname": "Quintero" },
+                { "ciudadname": "Hanga Roa" },
+                { "ciudadname": "Los Andes" },
+                { "ciudadname": "Rinconada" },
+                { "ciudadname": "San Esteban" },
+                { "ciudadname": "La Ligua" },
+                { "ciudadname": "Cabildo" },
+                { "ciudadname": "Quillota" },
+                { "ciudadname": "El Melón" },
+                { "ciudadname": "San Antonio" },
+                { "ciudadname": "Cartagena" },
+                { "ciudadname": "Las Cruces" },
+                { "ciudadname": "Santo Domingo" },
+                { "ciudadname": "El Algarrobo" },
+                { "ciudadname": "El Quisco" },
+                { "ciudadname": "El Melón" },
+                { "ciudadname": "Punitaqui" },
+                { "ciudadname": "San Felipe" },
+                { "ciudadname": "Catemu" },
+                { "ciudadname": "Putaendo" },
+                { "ciudadname": "Limache" },
+                { "ciudadname": "Olmué" },
+                { "ciudadname": "Rancagua" },
+                { "ciudadname": "Codegua" },
+                { "ciudadname": "San Vicente de Tagua Tagua" },
+                { "ciudadname": "San Fernando" },
+                { "ciudadname": "Pichilemu" },
+                { "ciudadname": "Chimbarongo" },
+                { "ciudadname": "Talca" },
+                { "ciudadname": "Curico" },
+                { "ciudadname": "Linares" },
+                { "ciudadname": "Cauquenes" },
+                { "ciudadname": "Constitucion" },
+                { "ciudadname": "Chillan" },
+                { "ciudadname": "San Carlos" },
+                { "ciudadname": "Quirihue" },
+                { "ciudadname": "Concepción" },
+                { "ciudadname": "Talcahuano" },
+                { "ciudadname": "Los Ángeles" },
+                { "ciudadname": "Temuco" },
+                { "ciudadname": "Cunco" },
+                { "ciudadname": "Pucón" },
+                { "ciudadname": "Angol" },
+                { "ciudadname": "Villarrica" },
+                { "ciudadname": "Curacautín" },
+                { "ciudadname": "Puerto Montt" },
+                { "ciudadname": "Osorno" },
+                { "ciudadname": "Puerto Varas" },
+                { "ciudadname": "Quellón" },
+                { "ciudadname": "Coyhaique" },
+                { "ciudadname": "Puerto Aysén" },
+                { "ciudadname": "Cochrane" },
+                { "ciudadname": "Chile Chico" },
+                { "ciudadname": "Punta Arenas" },
+                { "ciudadname": "Puerto Williams" },
+                { "ciudadname": "Porvenir" },
+                { "ciudadname": "Puerto Natales" },
+                { "ciudadname": "Santiago" },
+                { "ciudadname": "Cerrillos" },
+                { "ciudadname": "Cerro Navia" },
+                { "ciudadname": "Conchalí" },
+                { "ciudadname": "El Bosque" },
+                { "ciudadname": "Estación Central" },
+                { "ciudadname": "Huechuraba" },
+                { "ciudadname": "Independencia" },
+                { "ciudadname": "La Cisterna" },
+                { "ciudadname": "La Florida" },
+                { "ciudadname": "La Granja" },
+                { "ciudadname": "La Pintana" },
+                { "ciudadname": "La Reina" },
+                { "ciudadname": "Las Condes" },
+                { "ciudadname": "Lo Barnechea" },
+                { "ciudadname": "Lo Espejo" },
+                { "ciudadname": "Lo Prado" },
+                { "ciudadname": "Macul" },
+                { "ciudadname": "Maipú" },
+                { "ciudadname": "Ñuñoa" },
+                { "ciudadname": "Pedro Aguirre Cerda" },
+                { "ciudadname": "Peñalolén" },
+                { "ciudadname": "Providencia" },
+                { "ciudadname": "Pudahuel" },
+                { "ciudadname": "Quilicura" },
+                { "ciudadname": "Quinta Normal" },
+                { "ciudadname": "Recoleta" },
+                { "ciudadname": "Renca" },
+                { "ciudadname": "San Joaquín" },
+                { "ciudadname": "San Miguel" },
+                { "ciudadname": "Vitacura" },
+                { "ciudadname": "Puente Alto" },
+                { "ciudadname": "Pirque" },
+                { "ciudadname": "San Bernardo" },
+                { "ciudadname": "Padre Hurtado" },
+                { "ciudadname": "Colina" },
+                { "ciudadname": "Chicureo" },
+                { "ciudadname": "Buin" },
+                { "ciudadname": "Tiltil" },
+                { "ciudadname": "Paine" },
+                { "ciudadname": "Melipilla" },
+                { "ciudadname": "Curacaví" },
+                { "ciudadname": "Talagante" },
+                { "ciudadname": "El Monte" },
+                { "ciudadname": "Isla de Maipo" },
+                { "ciudadname": "La Islita" },
+                { "ciudadname": "Peñaflor" }
+            ];
+
+            //MOSTRAR SUGERENCIAS
+            $("#ciudad").fuzzyComplete(sugerenciaCiudad);
+
+            //FUNCION PARA VALIDAR RUT
+            var Fn = {
+                // Valida el rut con su cadena completa "XXXXXXXX-X"
+                validaRut: function (rutCompleto) {
+                    rutCompleto = rutCompleto.replace("‐", "-");
+                    if (!/^[0-9]+[-|‐]{1}[0-9kK]{1}$/.test(rutCompleto))
+                        return false;
+                    var tmp = rutCompleto.split('-');
+                    var digv = tmp[1];
+                    var rut = tmp[0];
+                    if (digv == 'K') digv = 'k';
+
+                    return (Fn.dv(rut) == digv);
+                },
+                dv: function (T) {
+                    var M = 0, S = 1;
+                    for (; T; T = Math.floor(T / 10))
+                        S = (S + T % 10 * (9 - M++ % 6)) % 11;
+                    return S ? S - 1 : 'k';
+                }
+            }
+
+
             $("#error").hide();
 
             $("#formulario").submit(function () {
                 var mensaje = "";
-
-                var string = $("#documento").val();
-                var guion = new RegExp('-');
-                var resultado = guion.test(string);
 
                 if ($("#nombre").val().trim().length == 0) {
                     mensaje = "El nombre está en blanco.";
@@ -160,15 +330,22 @@
                     mensaje = "Por favor solo ingrese o un numero de documento o un numero de pasaporte.";
 
                 }
-                else if (resultado == false && $("#pasaporte").val().trim().length == 0) {
-                    mensaje = "Por favor ingrese un RUT válido";
+
+                if (Fn.validaRut($("#documento").val())) {
+                    mensaje = "";
+                } else {
+                    mensaje = "El rut ingresado no es válido";
                 }
+
 
                 if (mensaje != "") {
                     $("#error").html(mensaje);
                     $("#error").show();
                     event.preventDefault();
                 }
+
+
+
             })
         })
     </script>
