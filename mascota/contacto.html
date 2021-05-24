@@ -340,11 +340,15 @@
 
                 }
 
-                if (Fn.validaRut($("#documento").val())) {
-                    mensaje = "";
-                } else {
-                    mensaje = "El rut ingresado no es válido";
+                if ($("#documento").val().trim().length >= 1) {
+                    if (Fn.validaRut($("#documento").val())) {
+                        mensaje = "";
+                    } else {
+                        mensaje = "El RUT ingresado no es válido";
+                    }
                 }
+
+
 
 
                 if (mensaje != "") {
