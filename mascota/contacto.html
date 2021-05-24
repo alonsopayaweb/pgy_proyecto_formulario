@@ -93,8 +93,8 @@
                     </div>
                     <div class="form-group">
                         <label for="comentario">Comentario</label>
-                        <input type="text" class="form-control" id="comentario" name="comentario"
-                            placeholder="Inserte su comentario">
+                        <textarea class="form-control" id="comentario" name="comentario" rows="4" placeholder="Inserte su comentario"></textarea></textarea>
+                        <p><small id="contador" class="text-danger"></small></p>
                     </div>
                     <div class="form-group">
                         <input type="hidden" id="url" name="url"
@@ -285,7 +285,7 @@
                 { "ciudadname": "Peñaflor" }
             ];
 
-            //MOSTRAR SUGERENCIAS
+            //MOSTRAR SUGERENCIAS DE CIUDAD
             $("#ciudad").fuzzyComplete(sugerenciaCiudad);
 
             //FUNCION PARA VALIDAR RUT
@@ -310,11 +310,35 @@
                 }
             }
 
+            //FUNCION PARA CONTAR CARACTERES EN EL COMENTARIO
+            $('#comentario').keyup(function () {
+                var largoTexto = $('#comentario').val().length;
 
+                $('#contador').html(largoTexto + ' caracteres');
+
+                if (largoTexto >= 50) {
+                    $('#contador').removeClass('text-danger');
+                }
+                else if (largoTexto < 50) {
+                    $('#contador').addClass('text-danger');
+                }
+            });
+
+
+            //ESCONDE MENSAJE DE ERROR POR DEFECTO
             $("#error").hide();
 
+            //FUNCIONES DE VALIDACION
             $("#formulario").submit(function () {
                 var mensaje = "";
+
+                if ($("#documento").val().trim().length >= 1) {
+                    if (Fn.validaRut($("#documento").val())) {
+                        mensaje = "";
+                    } else {
+                        mensaje = "El RUT ingresado no es válido";
+                    }
+                }
 
                 if ($("#nombre").val().trim().length == 0) {
                     mensaje = "El nombre está en blanco.";
@@ -339,17 +363,6 @@
                     mensaje = "Por favor solo ingrese o un numero de documento o un numero de pasaporte.";
 
                 }
-
-                if ($("#documento").val().trim().length >= 1) {
-                    if (Fn.validaRut($("#documento").val())) {
-                        mensaje = "";
-                    } else {
-                        mensaje = "El RUT ingresado no es válido";
-                    }
-                }
-
-
-
 
                 if (mensaje != "") {
                     $("#error").html(mensaje);
