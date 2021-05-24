@@ -316,6 +316,14 @@
             $("#formulario").submit(function () {
                 var mensaje = "";
 
+                if ($("#documento").val().trim().length >= 1) {
+                    if (Fn.validaRut($("#documento").val())) {
+                        mensaje = "";
+                    } else {
+                        mensaje = "El RUT ingresado no es válido";
+                    }
+                }
+
                 if ($("#nombre").val().trim().length == 0) {
                     mensaje = "El nombre está en blanco.";
                 }
@@ -339,17 +347,6 @@
                     mensaje = "Por favor solo ingrese o un numero de documento o un numero de pasaporte.";
 
                 }
-
-                if ($("#documento").val().trim().length >= 1) {
-                    if (Fn.validaRut($("#documento").val())) {
-                        mensaje = "";
-                    } else {
-                        mensaje = "El RUT ingresado no es válido";
-                    }
-                }
-
-
-
 
                 if (mensaje != "") {
                     $("#error").html(mensaje);
