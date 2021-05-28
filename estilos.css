@@ -17,3 +17,7 @@ body {
 footer a {
     color: #272727;
 }
+
+.botonNocturno {
+    text-align: end;
+}
