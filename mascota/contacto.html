@@ -107,8 +107,8 @@
                         <input type="hidden" id="url" name="url"
                             value="https://alonsopayaweb.github.io/pgy_proyecto_formulario/">
                     </div>
-                    <input type="submit" class="btn btn-danger" id="enviar" value="Enviar">
-                    <input type="reset" class="btn btn-primary" id="limpiar" value="Limpiar">
+                    <input type="submit" class="btn btn-primary" id="enviar" value="Enviar">
+                    <input type="reset" class="btn btn-danger" id="limpiar" value="Limpiar">
                     <div id="error" class="alert alert-danger mt-3" role="alert"></div>
                 </form>
             </div>
@@ -125,7 +125,7 @@
                     <br>
                     <a href="https://www.instagram.com/AyudaAUnPeludo_">📷Instagram</a>
                     <br>
-                    <p>2021 © Todos los Derechos Reservados</p>
+                    <p class="mt-2">2021 © Todos los Derechos Reservados</p>
                 </div>
                 <div class="col-md botonNocturno">
                     <button type="button" id="black" class="btn btn-dark">🌛Apagar luces</button>
@@ -358,12 +358,12 @@
                     if (Fn.validaRut($("#documento").val())) {
                         mensaje = "";
                     } else {
-                        mensaje = "El RUT ingresado no es válido";
+                        mensaje = "El RUT ingresado no es válido.";
                     }
                 } else if (($('#checkPasaporte:checked').val() == 'pasaporte' && $("#documento").val().trim().length >= 1)) {
                     mensaje = "";
                 } else {
-                    mensaje = "El RUT o pasaporte ingresado no es válido";
+                    mensaje = "El RUT o pasaporte ingresado no es válido.";
                 }
 
                 if ($("#nombre").val().trim().length == 0) {
@@ -383,7 +383,7 @@
                 }
 
                 if ($("#documento").val().trim().length == 0) {
-                    mensaje = "Por favor ingrese un numero de documento o pasaporte valido.";
+                    mensaje = "Por favor ingrese un RUT o pasaporte valido.";
                 }
                 //else if ($("#pasaporte").val().length >= 1 && $("#documento").val().trim().length >= 1) {
                 // mensaje = "Por favor solo ingrese o un numero de documento o un numero de pasaporte.";
