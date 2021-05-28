@@ -154,12 +154,17 @@
                     $('#documento').get(0).placeholder = 'Inserte su RUT';
                 }
             })
-
             $('#checkPasaporte').change(function () {
                 if (this.checked) {
                     $('#documento').val(null);
                     $('#documento').get(0).placeholder = 'Inserte su Pasaporte';
                 }
+            })
+
+            
+            //FUNCION PARA COLOCAR PLACEHOLDER POR DEFECTO EN DOCUMENTO
+            $('#limpiar').click(function() {
+                $('#documento').get(0).placeholder = 'Inserte su RUT';
             })
 
             //ARRAY PARA SUGERIR CIUDADES
@@ -385,10 +390,6 @@
                 if ($("#documento").val().trim().length == 0) {
                     mensaje = "Por favor ingrese un RUT o pasaporte valido.";
                 }
-                //else if ($("#pasaporte").val().length >= 1 && $("#documento").val().trim().length >= 1) {
-                // mensaje = "Por favor solo ingrese o un numero de documento o un numero de pasaporte.";
-
-                //  }
 
                 if (mensaje != "") {
                     $("#error").html(mensaje);
