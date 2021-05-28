@@ -62,24 +62,30 @@
                     <h1>Contacto</h1>
 
                     <div class="form-group">
-                        <label for="nombre">Nombre</label>
+                        <label for="nombre">Nombre*</label>
                         <input type="text" class="form-control" id="nombre" name="nombre"
                             placeholder="Inserte su nombre">
                     </div>
                     <div class="form-group">
-                        <label for="correo">Correo Electrónico</label>
+                        <label for="correo">Correo Electrónico*</label>
                         <input type="email" class="form-control" id="correo" name="correo"
                             placeholder="Inserte su correo">
                     </div>
                     <div class="form-group">
-                        <label for="documento">Documento</label>
+                        <label for="documento">Documento*</label>
+                        <br>
+                        <div class="form-check form-check-inline mb-2">
+                            <input class="form-check-input" type="radio" name="checkDocumento" id="checkRut" value="rut"
+                                checked>
+                            <label class="form-check-label" for="check1">RUT</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="checkDocumento" id="checkPasaporte"
+                                value="pasaporte">
+                            <label class="form-check-label" for="check2">Pasaporte</label>
+                        </div>
                         <input type="text" class="form-control" id="documento" name="documento"
                             placeholder="Inserte su RUT">
-                    </div>
-                    <div class="form-group">
-                        <label for="pasaporte">Pasaporte</label>
-                        <input type="text" class="form-control" id="pasaporte" name="documento"
-                            placeholder="Inserte su pasaporte">
                     </div>
                     <div class="form-group">
                         <label for="telefono">Teléfono</label>
@@ -87,13 +93,14 @@
                             placeholder="Inserte su Teléfono">
                     </div>
                     <div class="form-group">
-                        <label for="ciudad">Ciudad</label>
+                        <label for="ciudad">Ciudad*</label>
                         <input type="text" class="form-control" id="ciudad" name="ciudad"
                             placeholder="Inserte su Ciudad">
                     </div>
                     <div class="form-group">
-                        <label for="comentario">Comentario</label>
-                        <textarea class="form-control" id="comentario" name="comentario" rows="4" placeholder="Inserte su comentario"></textarea></textarea>
+                        <label for="comentario">Comentario*</label>
+                        <textarea class="form-control" id="comentario" name="comentario" rows="4"
+                            placeholder="Inserte su comentario"></textarea></textarea>
                         <p><small id="contador" class="text-danger"></small></p>
                     </div>
                     <div class="form-group">
@@ -139,6 +146,21 @@
         crossorigin="anonymous"></script>
     <script>
         $(document).ready(function () {
+
+            //FUNCION PARA CAMBIAR IMPUT DE TEXT A TYPE
+            $('#checkRut').change(function () {
+                if (this.checked) {
+                    $('#documento').val(null);
+                    $('#documento').get(0).placeholder = 'Inserte su RUT';
+                }
+            })
+
+            $('#checkPasaporte').change(function () {
+                if (this.checked) {
+                    $('#documento').val(null);
+                    $('#documento').get(0).placeholder = 'Inserte su Pasaporte';
+                }
+            })
 
             //ARRAY PARA SUGERIR CIUDADES
             var sugerenciaCiudad = [
@@ -332,12 +354,16 @@
             $("#formulario").submit(function () {
                 var mensaje = "";
 
-                if ($("#documento").val().trim().length >= 1) {
+                if ($('#checkRut:checked').val() == 'rut' && $("#documento").val().trim().length >= 1) {
                     if (Fn.validaRut($("#documento").val())) {
                         mensaje = "";
                     } else {
                         mensaje = "El RUT ingresado no es válido";
                     }
+                } else if (($('#checkPasaporte:checked').val() == 'pasaporte' && $("#documento").val().trim().length >= 1)) {
+                    mensaje = "";
+                } else {
+                    mensaje = "El RUT o pasaporte ingresado no es válido";
                 }
 
                 if ($("#nombre").val().trim().length == 0) {
@@ -352,17 +378,17 @@
                     mensaje = "Por favor, ingrese una ciudad valida.";
                 }
 
-                if ($("#comentario").val().length <= 50) {
+                if ($("#comentario").val().length < 50) {
                     mensaje = "Por favor ingrese al menos 50 caracteres en su comentario.";
                 }
 
-                if ($("#documento").val().trim().length == 0 && $("#pasaporte").val().trim().length == 0) {
+                if ($("#documento").val().trim().length == 0) {
                     mensaje = "Por favor ingrese un numero de documento o pasaporte valido.";
                 }
-                else if ($("#pasaporte").val().length >= 1 && $("#documento").val().trim().length >= 1) {
-                    mensaje = "Por favor solo ingrese o un numero de documento o un numero de pasaporte.";
+                //else if ($("#pasaporte").val().length >= 1 && $("#documento").val().trim().length >= 1) {
+                // mensaje = "Por favor solo ingrese o un numero de documento o un numero de pasaporte.";
 
-                }
+                //  }
 
                 if (mensaje != "") {
                     $("#error").html(mensaje);
