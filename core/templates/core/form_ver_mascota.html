@@ -13,39 +13,167 @@
 </head>
 
 <body id="body">
+    <div class="jumbotron jumbotron-fluid m-0 py-2" id="jumbotron">
+        <div class="container">
+            <h1 class="display-4">🐾AYUDA A UN PELUDO🐱</h1>
+            <p class="lead">¿Buscas un nuevo mejor amigo? Somos una organización sin fines de lucro protectora de
+                animales, que surge de
+                la
+                necesidad de proteger a animales domésticos en situación de maltrato o abandono, y busca desarrollar una
+                cultura
+                de protección activa de la vida animal y tenencia responsable de mascotas en nuestro país.</p>
+        </div>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-info" id="nav">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'index' %}">🏠 Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'nosotros' %}">Nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'gato' %}">Gatos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'perro' %}">Perros</a>
+                    </li>
+                    {% if request.user.is_authenticated %}
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{% url 'tablaMascotas' %}">Administrar Mascotas</a>
+                        </li>
+                    {% endif %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'contacto' %}">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'donar' %}">Donar</a>
+                    </li>
+                    
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    {% if request.user.is_authenticated %}
+                    <li class="nav-item active">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">¡Bienvenido
+                            {{user.username}}!</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Cerrar Sesión</a>
+                    </li>
+                    {% else %}
+                    <li>
+                        <a class="nav-link" href="{% url 'login' %}">Iniciar Sesión</a>
+                    </li>
+                    <li>
+                        <div class="btn-nav">
+                            <a class="btn btn-outline-light" href="{% url 'registro' %}">Registrarse</a>
+                        </div>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
     <div class="container my-3">
-        <div class="row d-flex justify-content-between my-3">
-            <h1>{{mascota.nombreMascota}}</h1>
-            <a href="{% url 'tablaMascotas' %}" class="btn btn-info my-2" role="button">Volver</a>
+        <div class="row my-3">
+            <div class="col d-flex justify-content-between">
+                <h1>{{mascota.nombreMascota}}</h1>
+                <a href="{% url 'tablaMascotas' %}" class="btn btn-info my-2" role="button">Volver</a>
+            </div>
         </div>
         <div class="row">
             <div class="col-md p-3">
                 {% if mascota.imagen %}
-                    <img class="img-fluid rounded" src="{{mascota.imagen.url}}">
+                <img class="img-fluid rounded" src="{{mascota.imagen.url}}">
                 {% else %}
-                    <img class="img-fluid rounded" src="{% static 'core/img/gatoPlaceholder.png'%}">
+                <img class="img-fluid rounded" src="{% static 'core/img/petPlaceholder.png'%}">
                 {% endif %}
-                
+
             </div>
-            
+
             <div class="col-md p-3">
                 <ul class="list-group" id="list">
                     <li class="list-group-item bg-info text-white" aria-current="true"><span
-                        style="font-weight: bold;">Nro. chip: </span>{{mascota.chip}}</li>
-                    <li class="list-group-item"><span style="font-weight: bold;">Especie: </span>{{mascota.especie}}</li>
+                            style="font-weight: bold;">Nro. chip: </span>{{mascota.chip}}</li>
+                    <li class="list-group-item"><span style="font-weight: bold;">Especie: </span>{{mascota.especie}}
+                    </li>
                     <li class="list-group-item"><span style="font-weight: bold;">Edad: </span>{{mascota.edad}}</li>
                     <li class="list-group-item"><span style="font-weight: bold;">Género: </span>{{mascota.genero}}</li>
-                    <li class="list-group-item"><span style="font-weight: bold;">Esterilizado: </span>{{mascota.esterilizado}}</li>
+                    <li class="list-group-item"><span style="font-weight: bold;">Esterilizado:
+                        </span>{{mascota.esterilizado}}</li>
                 </ul>
             </div>
         </div>
     </div>
+    <footer class="container-fluid text-white bg-info py-3" id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md">
+                    <p>Redes Sociales:</p>
+                    <a href="mailto:ayudaaunpeludo@gmail.com">✉️Correo Electrónico</a>
+                    <br>
+                    <a href="https://www.facebook.com/AyudaAUnPeludo_">👨‍💻Facebook</a>
+                    <br>
+                    <a href="https://www.instagram.com/AyudaAUnPeludo_">📷Instagram</a>
+                    <br>
+                    <p class="mt-2">2021 © Todos los Derechos Reservados</p>
+                </div>
+                <div class="col-md botonNocturno">
+                    <button type="button" id="black" class="btn btn-dark">🌛Apagar luces</button>
+                    <button type="button" id="white" class="btn btn-light d-none">☀Prender luces</button>
+                </div>
+            </div>
+        </div>
+    </footer>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
         crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+            $('#black').click(function () {
+                $('#nav').addClass('bg-dark');
+                $('#body').attr('style', 'background-color: #4B4B4B !important');
+                $('#jumbotron').attr('style', 'background-color: #4B4B4B !important');
+                $('#footer').addClass('bg-dark');
+                $('#jumbotron').removeClass('text-dark');
+                $('#jumbotron').addClass('text-white');
+                $('#body').removeClass('text-dark');
+                $('#body').addClass('text-white');
+                $('#footer a').removeClass('text-dark');
+                $('#footer a').addClass('text-white');
+                $('#black').addClass('d-none');
+                $('#white').removeClass('d-none');
+                $('#list').addClass('text-dark');
+                $('#list li').addClass('list-group-item-dark');
+            })
+            $('#white').click(function () {
+                $('#nav').removeClass('bg-dark');
+                $('#nav').addClass('bg-info');
+                $('#body').attr('style', 'background-color: #C2F3F5 !important');
+                $('#jumbotron').attr('style', 'background-color: #C2F3F5 !important');
+                $('#footer').removeClass('bg-dark');
+                $('#footer').addClass('bg-info');
+                $('#jumbotron').removeClass('text-white');
+                $('#jumbotron').addClass('text-dark');
+                $('#body').removeClass('text-white');
+                $('#body').addClass('text-dark');
+                $('#footer a').removeClass('text-white');
+                $('#footer a').addClass('text-dark');
+                $('#white').addClass('d-none');
+                $('#black').removeClass('d-none');
+                $('#list li').removeClass('list-group-item-dark');
+            })
+        })
+    </script>
 </body>
 
 </html>

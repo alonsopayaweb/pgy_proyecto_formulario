@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'Dile al Alonso que te dé la clave xd'
+SECRET_KEY = '(SOLICITE CLAVE A ALONSO, PORQUE GITHUB ME TIRO UN ERROR DE SEGURIDAD)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -136,3 +136,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+LOGIN_REDIRECT_URL = 'tablaMascotas'
+LOGOUT_REDIRECT_URL = 'login'

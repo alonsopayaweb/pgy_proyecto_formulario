@@ -1,6 +1,9 @@
+from django.http import request
 from core.forms import MascotaForm
 from django.shortcuts import render, redirect
 from .models import Mascota
+from .forms import UserRegisterForm
+from django.contrib import messages
 
 # Create your views here.
 
@@ -15,10 +18,13 @@ def nosotros(request):
 def gato(request):
     mascotas = Mascota.objects.filter(especie=1) #Definimos que la especie 1 (gato) se muestre aquí
 
-
     datos = {
         'mascotas': mascotas
     }
+
+    #Cuando no hayan mascotas disponibles
+    if not Mascota.objects.filter(especie=1).exists():
+        datos['mensaje'] = 1
 
     return render(request, 'core/gato.html', datos)
 
@@ -29,6 +35,10 @@ def perro(request):
     datos = {
         'mascotas': mascotas
     }
+
+    #Cuando no hayan mascotas disponibles
+    if not Mascota.objects.filter(especie=2).exists():
+        datos['mensaje'] = 1
 
     return render(request, 'core/perro.html', datos)
 
@@ -69,12 +79,12 @@ def form_mascota(request):
         formulario = MascotaForm(request.POST, files=request.FILES)
 
 
-        if formulario.is_valid:
+        if formulario.is_valid():
             formulario.save()
 
-            datos['mensaje'] = "Datos guardados correctamente"
+            datos['mensaje'] = 1
         else:
-            datos['mensaje'] = "Error al ingresar Datos"
+            datos['mensaje'] = 2
 
 
     return render(request, 'core/form_mascota.html', datos)
@@ -105,12 +115,12 @@ def form_mod_mascota(request,id):
         formulario = MascotaForm(data = request.POST, instance = mascota, files=request.FILES)
 
 
-        if formulario.is_valid:
+        if formulario.is_valid():
             formulario.save()
 
-            datos['mensaje'] = "Datos modificados correctamente"
+            datos['mensaje'] = 1
         else:
-            datos['mensaje'] = "Error al ingresar Datos"
+            datos['mensaje'] = 2
         datos['form'] = MascotaForm(instance=Mascota.objects.get(chip = id))
 
     return render(request, 'core/form_mod_mascota.html', datos)
@@ -122,3 +132,20 @@ def form_del_mascota(request,id):
     mascota.delete()
 
     return redirect(to = 'tablaMascotas')
+
+
+def registro(request):
+    #Registrar usuario
+    if request.method == 'POST':
+        form = UserRegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data['username']
+            messages.success(request, f'Usuario {username} creado')
+            return redirect(to = 'index')
+    else:
+        form = UserRegisterForm()
+    context = { 'form' : form }
+
+
+    return render(request, 'core/registro.html', context)

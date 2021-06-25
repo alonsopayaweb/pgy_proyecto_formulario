@@ -32,25 +32,50 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="{% url 'index' %}">🏠 Inicio</a>
-                    </li>
+					<li class="nav-item active">
+						<a class="nav-link" href="{% url 'index' %}">🏠 Inicio</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{% url 'nosotros' %}">Nosotros</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{% url 'gato' %}">Gatos</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{% url 'perro' %}">Perros</a>
+					</li>
+					{% if request.user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'nosotros' %}">Nosotros</a>
+                        <a class="nav-link" href="{% url 'tablaMascotas' %}">Administrar Mascotas</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'gato' %}">Gatos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'perro' %}">Perros</a>
-                    </li>
+                    {% endif %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'contacto' %}">Contacto</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'donar' %}">Donar</a>
                     </li>
-                </ul>
+                
+				</ul>
+				<ul class="navbar-nav ml-auto">
+					{% if request.user.is_authenticated %}
+					<li class="nav-item active">
+						<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">¡Bienvenido {{user.username}}!</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{% url 'logout' %}">Cerrar Sesión</a>
+					</li>
+					{% else %}
+						<li>
+							<a class="nav-link" href="{% url 'login' %}">Iniciar Sesión</a>
+						</li>
+						<li>
+							<div class="btn-nav">
+								<a class="btn btn-outline-light" href="{% url 'registro' %}">Registrarse</a>
+							</div>
+						</li>
+					{% endif %}
+				</ul>
             </div>
         </div>
     </nav>
@@ -63,7 +88,7 @@
                 {% if mascota.imagen %}
                     <img class="img-fluid rounded" src="{{mascota.imagen.url}}">
                 {% else %}
-                    <img class="img-fluid rounded" src="{% static 'core/img/gatoPlaceholder.png'%}">
+                    <img class="img-fluid rounded" src="{% static 'core/img/petPlaceholder.png'%}">
                 {% endif %}
                 
             </div>
